@@ -17,7 +17,19 @@
   All 3 rules passed: http_req_failed rate = X%, p(95) = X ms (< 1000),
   p(99) = X ms (< 1500). After changing p(95)<1000 to p(95)<100,
   the p(95) rule failed and the exit code was 99.
-- Step 0.8, what was wrong, and how the checks showed it:
+- Step 0.8, what was wrong, and how the checks showed it: 
+    ✗ no pepperoni
+      ↳  80% — ✓ 60 / ✗ 15
+    ✗ no knife needed
+      ↳  74% — ✓ 56 / ✗ 19
+  The request sent 'pepperoni' and 'knife' in lowercase, but the API
+  names are 'Pepperoni' and 'Knife' (seen with explore.js), so the
+  exclusions did not match and were ignored. The API still answered 200,
+  so only the content checks found the problem: X% of 'no pepperoni' and
+  Y% of 'no knife needed' checks failed. Fixing the names made all
+  checks pass. The API picks a pizza at random, so one manual request
+  can happen to return a correct pizza by luck. Many requests under
+  load show how often the answer is wrong.
 
 ## Part A results
 
