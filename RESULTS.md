@@ -14,6 +14,9 @@
   Run with P95=300: exit code 99 (p(95) = 376.22 ms is not < 300 ms, so the
   http_req_duration threshold was crossed).
 - Step 0.7, rules that passed, p(95), p(99), exit code after your change:
+  All 3 rules passed: http_req_failed rate = X%, p(95) = X ms (< 1000),
+  p(99) = X ms (< 1500). After changing p(95)<1000 to p(95)<100,
+  the p(95) rule failed and the exit code was 99.
 - Step 0.8, what was wrong, and how the checks showed it:
 
 ## Part A results
