@@ -4,6 +4,11 @@
 
 - Step 0.1, http_req_duration: avg=min=med=max=p(90)=p(95)=260.81 ms (1 request)
 - Step 0.2, requests, rate and p(95), and why the rate stays below 5:
+  80 requests, 3.83 req/s, p(95) = 268.82 ms. Each VU sends one request
+  (about 0.26 s) and then sleeps for 1 s, so one iteration takes about
+  1.29 s (iteration_duration avg). Each VU therefore sends only about
+  0.78 requests per second, and 5 VUs send about 3.9 requests per second,
+  which is below 5. The sleep (think time) is the reason.
 - Step 0.6, exit code of the normal run and of the run with P95=300:
 - Step 0.7, rules that passed, p(95), p(99), exit code after your change:
 - Step 0.8, what was wrong, and how the checks showed it:
