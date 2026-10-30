@@ -10,6 +10,9 @@
   0.78 requests per second, and 5 VUs send about 3.9 requests per second,
   which is below 5. The sleep (think time) is the reason.
 - Step 0.6, exit code of the normal run and of the run with P95=300:
+  Normal run: exit code 0 (all thresholds passed, p(95) = 372.89 ms < 1500 ms).
+  Run with P95=300: exit code 99 (p(95) = 376.22 ms is not < 300 ms, so the
+  http_req_duration threshold was crossed).
 - Step 0.7, rules that passed, p(95), p(99), exit code after your change:
 - Step 0.8, what was wrong, and how the checks showed it:
 
